@@ -9,7 +9,7 @@ alias h='history'
 alias ..='cd ..'
 alias vi='vim'
 alias bashrc='source ~/.bashrc'
-alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
+#alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
 if [ -f /usr/local/git/contrib/completion/git-completion.bash ]; then
@@ -46,6 +46,8 @@ export M2_HOME=/opt/maven
 
 export GROOVY_HOME=$DEV/groovy/current
 export SCALA_HOME=$DEV/scala/current
+export CLOJURE_HOME=$DEV/clojure/current
+export GRADLE_HOME=$DEV/gradle/current
 export ECLIPSE_WORK=$DEV/work
 export HADOOP_HOME=/opt/hadoop
 export ACCUMULO_HOME=/opt/accumulo
@@ -55,14 +57,16 @@ export DERBY_HOME=/Applications/javadb10.5.3.0
 
 export TM_WORK=$DEV/work/Textmate
 export TM_CLASSES_DIR=$TM_WORK/classes
+export TM_GROOVY=${GROOVY_HOME}/bin
 
 export GROOVY_JARS=$GROOVY_HOME/lib/*
 export SCALA_JARS=$SCALA_HOME/lib/*
+export CLOJURE_JARS=${CLOJURE_HOME}/*
 export JAVA_JARS=
 
-export CLASSPATH=.:$GROOVY_JARS:$SCALA_JARS:$JAVA_JARS:$TM_CLASSES_DIR
+export CLASSPATH=.:$GROOVY_JARS:$SCALA_JARS:${CLOJURE_JARS}:$JAVA_JARS:$TM_CLASSES_DIR
 
-export PATH=~/bin:/opt/local/bin:/opt/local/sbin:/opt/subversion/bin:/usr/local/git/bin:/usr/local/mysql/bin:$ANT_HOME/bin:$GROOVY_HOME/bin:$SCALA_HOME/bin:$HADOOP_HOME/bin:/$ACCUMULO_HOME/bin:$ZOOKEEPER_HOME/bin:$M2_HOME/bin:.:$PATH
+export PATH=~/bin:/opt/local/bin:/opt/local/sbin:/opt/subversion/bin:/usr/local/git/bin:/usr/local/mysql/bin:$ANT_HOME/bin:$GROOVY_HOME/bin:${GRADLE_HOME}/bin:$SCALA_HOME/bin:$HADOOP_HOME/bin:/$ACCUMULO_HOME/bin:$ZOOKEEPER_HOME/bin:$M2_HOME/bin:.:$PATH
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
