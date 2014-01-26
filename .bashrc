@@ -49,7 +49,7 @@ export SCALA_HOME=$DEV/scala/current
 export CLOJURE_HOME=$DEV/clojure/current
 export GRADLE_HOME=$DEV/gradle/current
 export ECLIPSE_WORK=$DEV/work
-export HADOOP_HOME=/opt/hadoop
+export HADOOP_PREFIX=/opt/hadoop
 export ACCUMULO_HOME=/opt/accumulo
 export ZOOKEEPER_HOME=/opt/zookeeper
 export TOMCAT_HOME=$DEV/apache/apache-tomcat-6.0.26
@@ -66,7 +66,7 @@ export JAVA_JARS=
 
 export CLASSPATH=.:$GROOVY_JARS:$SCALA_JARS:${CLOJURE_JARS}:$JAVA_JARS:$TM_CLASSES_DIR
 
-export PATH=~/bin:/opt/local/bin:/opt/local/sbin:/opt/subversion/bin:/usr/local/git/bin:/usr/local/mysql/bin:$ANT_HOME/bin:$GROOVY_HOME/bin:${GRADLE_HOME}/bin:$SCALA_HOME/bin:$HADOOP_HOME/bin:/$ACCUMULO_HOME/bin:$ZOOKEEPER_HOME/bin:$M2_HOME/bin:.:$PATH
+export PATH=~/bin:/opt/local/bin:/opt/local/sbin:/opt/subversion/bin:/usr/local/git/bin:/usr/local/mysql/bin:$ANT_HOME/bin:$GROOVY_HOME/bin:${GRADLE_HOME}/bin:$SCALA_HOME/bin:$HADOOP_PREFIX/bin:/$ACCUMULO_HOME/bin:$ZOOKEEPER_HOME/bin:$M2_HOME/bin:.:$PATH
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
