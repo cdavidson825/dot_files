@@ -9,7 +9,26 @@ alias h='history'
 alias ..='cd ..'
 alias vi='vim'
 alias bashrc='source ~/.bashrc'
+alias vi_bashrc='vim ~/.bashrc'
 alias crepl='java -cp $CLOJURE_JARS clojure.main'
+
+##################
+# ENV  SECTION   #
+##################
+export JAVA6=1.6.0_65
+export JAVA7=1.7.0_45
+export JAVA8=1.8.0_20
+export JAVA_VERSION=${JAVA7}
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk${JAVA_VERSION}.jdk/Contents/Home
+
+export ANT_HOME=/development/apache/ant/apache-ant-1.9.2
+export ANT_OPTS=-Xmx1024m
+export DEV=/development
+export FW=${DEV}/frameworks
+export LANGUAGES=${DEV}/lang
+export PLAY=${FW}/play
+export WORK=${DEV}/work
+export PROJECTS=${WORK}/projects
 
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
 if [ -f /usr/local/git/contrib/completion/git-completion.bash ]; then
@@ -24,21 +43,6 @@ if [ -f /usr/local/git/contrib/completion/git-prompt.sh ]; then
   PS1='\t \w $(__git_ps1 "(%s)")$ '
 fi
 
-##################
-# ENV  SECTION   #
-##################
-export JAVA6=1.6.0_65
-export JAVA7=1.7.0_45
-export JAVA8=1.8.0_20
-export JAVA_VERSION=${JAVA7}
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk${JAVA_VERSION}.jdk/Contents/Home
-
-export ANT_HOME=/development/apache/ant/apache-ant-1.9.2
-export ANT_OPTS=-Xmx1024m
-export DEV=/development
-export PLAY=${DEV}/play
-export WORK=${DEV}/work
-export PROJECTS=${WORK}/projects
 
 
 export EMISSARY_HOME=${PROJECTS}/emissary
@@ -50,10 +54,10 @@ export EMISSARY_INSTALL_FLAVOR="BURRITO,HDFS"
 
 export M2_HOME=/opt/maven
 
-export GROOVY_HOME=$DEV/groovy/current
-export SCALA_HOME=$DEV/scala/current
-export CLOJURE_HOME=$DEV/clojure/current
-export GRADLE_HOME=$DEV/gradle/current
+export GROOVY_HOME=${LANGUAGES}/groovy/current
+export SCALA_HOME=${LANGUAGES}/scala/current
+export CLOJURE_HOME=${LANGUAGES}/clojure/current
+export GRADLE_HOME=${FW}/gradle/current
 export ECLIPSE_WORK=$DEV/work
 export HADOOP_PREFIX=/opt/hadoop
 export HADOOP_HOME=/opt/hadoop
