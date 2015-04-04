@@ -1,0 +1,24 @@
+[core]
+	editor = mate -w
+	excludesfile = /Users/chrisdavidson/.gitignore_global
+[user]
+	name = Chris Davidson
+	email = cdavidson825@gmail.com
+[alias]
+	l = log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+	lll = log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate --numstat
+	ll = log --pretty=format:\"%C(yellow)%h\\\\ %C(green)%ad%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate --date=short --graph
+	ci = commit
+	co = checkout
+	df = diff
+	last = log -2 HEAD
+	br = branch
+	st = status
+[push]
+	default = simple
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

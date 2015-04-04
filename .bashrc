@@ -11,6 +11,7 @@ alias vi='vim'
 alias bashrc='source ~/.bashrc'
 alias vi_bashrc='vim ~/.bashrc'
 alias crepl='java -cp $CLOJURE_JARS clojure.main'
+alias gs='git status'
 
 ##################
 # ENV  SECTION   #
@@ -18,7 +19,7 @@ alias crepl='java -cp $CLOJURE_JARS clojure.main'
 export JAVA6=1.6.0_65
 export JAVA7=1.7.0_45
 export JAVA8=1.8.0_20
-export JAVA_VERSION=${JAVA7}
+export JAVA_VERSION=${JAVA8}
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk${JAVA_VERSION}.jdk/Contents/Home
 
 export ANT_HOME=/development/apache/ant/apache-ant-1.9.2
@@ -65,6 +66,7 @@ export ACCUMULO_HOME=/opt/accumulo
 export ZOOKEEPER_HOME=/opt/zookeeper
 export TOMCAT_HOME=$DEV/apache/apache-tomcat-6.0.26
 export DERBY_HOME=/Applications/javadb10.5.3.0
+export H2_HOME=/development/frameworks/h2/
 
 export TM_WORK=$DEV/work/Textmate
 export TM_CLASSES_DIR=$TM_WORK/classes
