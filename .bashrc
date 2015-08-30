@@ -1,4 +1,85 @@
+#.bashrc
 
+#Source global def
+if [ -f /etc/bashrc ]; then
+  . /etc/bashrc
+fi
+
+##################
+# TEMP STUFF     #
+##################
+alias nfjs='cd /development/conference/nfjs/NVSS2015SE2015/'
+
+##################
+# FUNCTIONS      #
+##################
+
+function grep_files()
+{
+  if [ $# == 0 ] ; then
+     echo "usage: $0 <term_to_grep>"
+  else
+    term="$@"
+    echo "Searching for \"${term}\" ..."
+    grep -iHn --color=always -R --exclude-dir .git -- "${term}" .
+  fi
+}
+alias grep_files=grep_files
+
+function find_file()
+{
+  if [[ $# == 1 ]]; then
+    input_file_pattern=$1
+    echo "Finding files that match pattern: \"${input_file_pattern}\""
+    echo ""
+    find . -name "${input_file_pattern}" -print
+    echo ""
+  else
+    echo "Need to provide a pattern to search for"
+  fi
+}
+alias find_file=find_file
+
+function vi_file()
+{
+  if [[ $# == 1 ]]; then
+    input_file_pattern=$1
+    count=`find . -name "${input_file_pattern}" -print | wc -l | sed 's/ //g'`
+    if [[ $count == 0 ]]; then
+      echo "Could not find any files matching input pattern: ${input_file_pattern}"
+    elif [[ $count == 1 ]]; then
+      vi `find . -name "${input_file_pattern}" -print`
+    else
+      echo "Found $count files for input pattern: \"${input_file_pattern}\""
+      find . -name "${input_file_pattern}" -print
+    fi
+  else
+    echo "Need to provide file to vi"
+  fi
+}
+alias vi_file=vi_file
+
+function find_class()
+{
+  if [ $# == 0 ]; then
+    echo "usage: $0 <class_to_find>"
+  else
+    class_to_find=$1
+    for f in *.jar; do echo "Searching $f..."; jar -tvf $f | fgrep --color=always ${class_to_find}; done
+  fi
+}
+alias find_class=find_class
+
+function millis_to_date()
+{
+  if [[ $# == 1 ]]; then
+    millis=$1
+    echo -e "milliseconds: $millis = `perl -e "print scalar localtime(${millis} / 1000)"` "
+  else
+    echo "Need to provide milliseconds."
+  fi
+}
+alias millis_to_date=millis_to_date
 
 ##################
 # ALIAS SECTION  #
@@ -44,8 +125,6 @@ if [ -f /usr/local/git/contrib/completion/git-prompt.sh ]; then
   PS1='\t \w $(__git_ps1 "(%s)")$ '
 fi
 
-
-
 export EMISSARY_HOME=${PROJECTS}/emissary
 export BURRITO_HOME=${PROJECTS}/burrito
 alias EM_DEBUG_ON="export DEBUG_JDK_OPTIONS='-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000'"
@@ -78,6 +157,8 @@ export CLOJURE_JARS=${CLOJURE_HOME}/*.jar
 export JAVA_JARS=
 
 export CLASSPATH=.:$GROOVY_JARS:$SCALA_JARS:${CLOJURE_JARS}:$JAVA_JARS:$TM_CLASSES_DIR
+
+export XMLLINT_INDENT="    "
 
 export PATH=~/bin:/opt/local/bin:/opt/local/sbin:/opt/subversion/bin:/usr/local/git/bin:/usr/local/mysql/bin:$ANT_HOME/bin:$GROOVY_HOME/bin:${GRADLE_HOME}/bin:$SCALA_HOME/bin:$HADOOP_PREFIX/bin:/$ACCUMULO_HOME/bin:$ZOOKEEPER_HOME/bin:$M2_HOME/bin:.:$PATH
 
