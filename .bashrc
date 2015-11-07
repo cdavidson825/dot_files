@@ -8,7 +8,7 @@ fi
 ##################
 # TEMP STUFF     #
 ##################
-alias nfjs='cd /development/conference/nfjs/NVSS2015SE2015/'
+alias nfjs='cd /development/conference/nfjs/NVSS2015FE2015/'
 
 ##################
 # FUNCTIONS      #
@@ -21,7 +21,8 @@ function grep_files()
   else
     term="$@"
     echo "Searching for \"${term}\" ..."
-    grep -iHn --color=always -R --exclude-dir .git -- "${term}" .
+    grep -aiHn --color=always -R --exclude-dir .git -- "${term}" .
+    
   fi
 }
 alias grep_files=grep_files
@@ -125,6 +126,9 @@ if [ -f /usr/local/git/contrib/completion/git-prompt.sh ]; then
   PS1='\t \w $(__git_ps1 "(%s)")$ '
 fi
 
+PS1s='\t \W $(__git_ps1 "(%s)")$ '
+alias short='PS1=$PS1s'
+
 export EMISSARY_HOME=${PROJECTS}/emissary
 export BURRITO_HOME=${PROJECTS}/burrito
 alias EM_DEBUG_ON="export DEBUG_JDK_OPTIONS='-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000'"
@@ -137,6 +141,7 @@ export M2_HOME=/opt/maven
 export GROOVY_HOME=${LANGUAGES}/groovy/current
 export SCALA_HOME=${LANGUAGES}/scala/current
 export CLOJURE_HOME=${LANGUAGES}/clojure/current
+export JRUBY_HOME=${LANGUAGES}/jruby/current
 export GRADLE_HOME=${FW}/gradle/current
 export ECLIPSE_WORK=$DEV/work
 export HADOOP_PREFIX=/opt/hadoop
@@ -146,21 +151,23 @@ export ZOOKEEPER_HOME=/opt/zookeeper
 export TOMCAT_HOME=$DEV/apache/apache-tomcat-6.0.26
 export DERBY_HOME=/Applications/javadb10.5.3.0
 export H2_HOME=/development/frameworks/h2/
+export ACTIVEMQ_HOME=/development/apache/activemq/current
 
 export TM_WORK=$DEV/work/Textmate
 export TM_CLASSES_DIR=$TM_WORK/classes
 export TM_GROOVY=${GROOVY_HOME}/bin
 
-export GROOVY_JARS=$GROOVY_HOME/lib/*.jar
-export SCALA_JARS=$SCALA_HOME/lib/*.jar
-export CLOJURE_JARS=${CLOJURE_HOME}/*.jar
+export GROOVY_JARS=${GROOVY_HOME}/lib/*
+export SCALA_JARS=${SCALA_HOME}/lib/*
+export CLOJURE_JARS=${CLOJURE_HOME}/*
+export JRUBY_JARS=${JRUBY_HOME}/lib/*
 export JAVA_JARS=
 
-export CLASSPATH=.:$GROOVY_JARS:$SCALA_JARS:${CLOJURE_JARS}:$JAVA_JARS:$TM_CLASSES_DIR
+export CLASSPATH=.:${JAVA_JARS}:${GROOVY_JARS}:${SCALA_JARS}:${CLOJURE_JARS}:${JRUBY_JARS}:$TM_CLASSES_DIR
 
 export XMLLINT_INDENT="    "
 
-export PATH=~/bin:/opt/local/bin:/opt/local/sbin:/opt/subversion/bin:/usr/local/git/bin:/usr/local/mysql/bin:$ANT_HOME/bin:$GROOVY_HOME/bin:${GRADLE_HOME}/bin:$SCALA_HOME/bin:$HADOOP_PREFIX/bin:/$ACCUMULO_HOME/bin:$ZOOKEEPER_HOME/bin:$M2_HOME/bin:.:$PATH
+export PATH=~/bin:/opt/local/bin:/opt/local/sbin:/usr/local/git/bin:/usr/local/mysql/bin:$ANT_HOME/bin:${GROOVY_HOME}/bin:${GRADLE_HOME}/bin:${SCALA_HOME}/bin:${HADOOP_PREFIX}/bin:/${ACCUMULO_HOME}/bin:${ZOOKEEPER_HOME}/bin:$M2_HOME/bin:${JRUBY_HOME}/bin:${ACTIVEMQ_HOME}/bin:.:$PATH
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
