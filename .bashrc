@@ -8,7 +8,7 @@ fi
 ##################
 # TEMP STUFF     #
 ##################
-alias nfjs='cd /development/conference/nfjs/NVSS2015FE2015/'
+alias nfjs='cd /development/conference/nfjs/NVSSApril2017/'
 
 ##################
 # FUNCTIONS      #
@@ -30,8 +30,8 @@ alias grep_files=grep_files
 function find_file()
 {
   if [[ $# == 1 ]]; then
-    input_file_pattern=$1
-    echo "Finding files that match pattern: \"${input_file_pattern}\""
+    input_file_pattern="*${1}*"
+    echo "Finding files that match term: \"${input_file_pattern}\""
     echo ""
     find . -name "${input_file_pattern}" -print
     echo ""
@@ -94,13 +94,13 @@ alias bashrc='source ~/.bashrc'
 alias vi_bashrc='vim ~/.bashrc'
 alias crepl='java -cp $CLOJURE_JARS clojure.main'
 alias gs='git status'
+alias cls="echo -e '\0033\0143'"
 
 ##################
 # ENV  SECTION   #
 ##################
-export JAVA6=1.6.0_65
-export JAVA7=1.7.0_45
-export JAVA8=1.8.0_20
+export JAVA7=1.7.0_80
+export JAVA8=1.8.0_112
 export JAVA_VERSION=${JAVA8}
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk${JAVA_VERSION}.jdk/Contents/Home
 
@@ -137,6 +137,7 @@ alias ant_nr="ant -Divy.has.resolved=true"
 export EMISSARY_INSTALL_FLAVOR="BURRITO,HDFS"
 
 export M2_HOME=/opt/maven
+export MAVEN_OPTS="-Xms1024m -Xmx2048m -Duser.timezone=GMT"
 
 export GROOVY_HOME=${LANGUAGES}/groovy/current
 export SCALA_HOME=${LANGUAGES}/scala/current
@@ -152,6 +153,7 @@ export TOMCAT_HOME=$DEV/apache/apache-tomcat-6.0.26
 export DERBY_HOME=/Applications/javadb10.5.3.0
 export H2_HOME=/development/frameworks/h2/
 export ACTIVEMQ_HOME=/development/apache/activemq/current
+export SPARK_HOME=/development/apache/spark/current
 
 export TM_WORK=$DEV/work/Textmate
 export TM_CLASSES_DIR=$TM_WORK/classes
