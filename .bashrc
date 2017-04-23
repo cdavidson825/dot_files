@@ -87,6 +87,7 @@ alias millis_to_date=millis_to_date
 ##################
 alias ls="ls -G"
 alias ll='ls -ltr'
+alias l='ll'
 alias h='history'
 alias ..='cd ..'
 alias vi='vim'
@@ -143,7 +144,7 @@ export GROOVY_HOME=${LANGUAGES}/groovy/current
 export SCALA_HOME=${LANGUAGES}/scala/current
 export CLOJURE_HOME=${LANGUAGES}/clojure/current
 export JRUBY_HOME=${LANGUAGES}/jruby/current
-export GRADLE_HOME=${FW}/gradle/current
+export GRADLE_HOME=${LANGUAGES}/gradle/current
 export ECLIPSE_WORK=$DEV/work
 export HADOOP_PREFIX=/opt/hadoop
 export HADOOP_HOME=/opt/hadoop
@@ -165,7 +166,7 @@ export CLOJURE_JARS=${CLOJURE_HOME}/*
 export JRUBY_JARS=${JRUBY_HOME}/lib/*
 export JAVA_JARS=
 
-export CLASSPATH=.:${JAVA_JARS}:${GROOVY_JARS}:${SCALA_JARS}:${CLOJURE_JARS}:${JRUBY_JARS}:$TM_CLASSES_DIR
+#export CLASSPATH=.:${JAVA_JARS}:${GROOVY_JARS}:${SCALA_JARS}:${CLOJURE_JARS}:${JRUBY_JARS}:$TM_CLASSES_DIR
 
 export XMLLINT_INDENT="    "
 
