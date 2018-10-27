@@ -5,10 +5,56 @@ if [ -f /etc/bashrc ]; then
   . /etc/bashrc
 fi
 
+######################
+# CD Directory Alias #
+######################
+alias cd_nfjs='cd /development/conference/nfjs/NVSSNov2018/'
+alias cd_variant='cd ~/Documents/companies/variant'
+
 ##################
-# TEMP STUFF     #
+# ALIAS SECTION  #
 ##################
-alias nfjs='cd /development/conference/nfjs/NVSSApril2017/'
+alias ls="ls -G"
+alias ll='ls -ltra'
+alias l='ll'
+alias ..='cd ..'
+alias vi='vim'
+alias bashrc='source ~/.bashrc'
+alias vi_bashrc='vim ~/.bashrc'
+alias gs='git status'
+alias cls="echo -e '\0033\0143'"
+alias delete_local_snapshots='for img in `sudo tmutil listlocalsnapshotdates | egrep '^2'`; do sudo tmutil deletelocalsnapshots $img; done'
+
+##################
+# ENV  SECTION   #
+##################
+export DEV=/development
+export OSS=${DEV}/oss
+export LANGUAGES=${DEV}/lang
+export WORK=${DEV}/work
+export PROJECTS=${WORK}/projects
+
+export BURRITO_HOME=${PROJECTS}/burrito-grande
+export EMISSARY_HOME=${BURRITO_HOME}/emissary
+export PROJECT_BASE='/development/work/projects/burrito-grande/assembly/target/dev/dev'
+alias EM_DEBUG_ON="export DEBUG_JDK_OPTIONS='-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000'"
+alias EM_DEBUG_OFF="unset DEBUG_JDK_OPTIONS"
+
+export M2_HOME=/opt/maven
+export MAVEN_OPTS="-Xms1024m -Xmx2048m -Djava.awt.headless=true -Duser.timezone=GMT"
+
+export CLOJURE_HOME=${LANGUAGES}/clojure/current
+export ECLIPSE_WORK=${DEV}/work
+export HADOOP_PREFIX=/opt/hadoop
+export HADOOP_HOME=/opt/hadoop
+export ACCUMULO_HOME=/opt/accumulo
+export ZOOKEEPER_HOME=/opt/zookeeper
+export ACTIVEMQ_HOME=${OSS}/activemq/current
+export SPARK_HOME=${OSS}/spark/current
+export ES_HOME=${OSS}/elasticsearch/current
+export KIBANA_HOME=${OSS}/kibana/current
+
+export XMLLINT_INDENT="    "
 
 ##################
 # FUNCTIONS      #
@@ -22,7 +68,6 @@ function grep_files()
     term="$@"
     echo "Searching for \"${term}\" ..."
     grep -aiHn --color=always -R --exclude-dir .git -- "${term}" .
-    
   fi
 }
 alias grep_files=grep_files
@@ -82,38 +127,6 @@ function millis_to_date()
 }
 alias millis_to_date=millis_to_date
 
-##################
-# ALIAS SECTION  #
-##################
-alias ls="ls -G"
-alias ll='ls -ltr'
-alias l='ll'
-alias h='history'
-alias ..='cd ..'
-alias vi='vim'
-alias bashrc='source ~/.bashrc'
-alias vi_bashrc='vim ~/.bashrc'
-alias crepl='java -cp $CLOJURE_JARS clojure.main'
-alias gs='git status'
-alias cls="echo -e '\0033\0143'"
-
-##################
-# ENV  SECTION   #
-##################
-export JAVA7=1.7.0_80
-export JAVA8=1.8.0_112
-export JAVA_VERSION=${JAVA8}
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk${JAVA_VERSION}.jdk/Contents/Home
-
-export ANT_HOME=/development/apache/ant/apache-ant-1.9.2
-export ANT_OPTS=-Xmx1024m
-export DEV=/development
-export FW=${DEV}/frameworks
-export LANGUAGES=${DEV}/lang
-export PLAY=${FW}/play
-export WORK=${DEV}/work
-export PROJECTS=${WORK}/projects
-
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
 if [ -f /usr/local/git/contrib/completion/git-completion.bash ]; then
   . /usr/local/git/contrib/completion/git-completion.bash
@@ -130,48 +143,8 @@ fi
 PS1s='\t \W $(__git_ps1 "(%s)")$ '
 alias short='PS1=$PS1s'
 
-export EMISSARY_HOME=${PROJECTS}/emissary
-export BURRITO_HOME=${PROJECTS}/burrito
-alias EM_DEBUG_ON="export DEBUG_JDK_OPTIONS='-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000'"
-alias EM_DEBUG_OFF="unset DEBUG_JDK_OPTIONS"
-alias ant_nr="ant -Divy.has.resolved=true"
-export EMISSARY_INSTALL_FLAVOR="BURRITO,HDFS"
+export PATH=~/bin:/opt/local/bin:${HADOOP_PREFIX}/bin:${ACCUMULO_HOME}/bin:${ZOOKEEPER_HOME}/bin:$M2_HOME/bin:${ACTIVEMQ_HOME}/bin:${ES_HOME}/bin:${KIBANA_HOME}/bin:.:$PATH
 
-export M2_HOME=/opt/maven
-export MAVEN_OPTS="-Xms1024m -Xmx2048m -Duser.timezone=GMT"
-
-export GROOVY_HOME=${LANGUAGES}/groovy/current
-export SCALA_HOME=${LANGUAGES}/scala/current
-export CLOJURE_HOME=${LANGUAGES}/clojure/current
-export JRUBY_HOME=${LANGUAGES}/jruby/current
-export GRADLE_HOME=${LANGUAGES}/gradle/current
-export ECLIPSE_WORK=$DEV/work
-export HADOOP_PREFIX=/opt/hadoop
-export HADOOP_HOME=/opt/hadoop
-export ACCUMULO_HOME=/opt/accumulo
-export ZOOKEEPER_HOME=/opt/zookeeper
-export TOMCAT_HOME=$DEV/apache/apache-tomcat-6.0.26
-export DERBY_HOME=/Applications/javadb10.5.3.0
-export H2_HOME=/development/frameworks/h2/
-export ACTIVEMQ_HOME=/development/apache/activemq/current
-export SPARK_HOME=/development/apache/spark/current
-
-export TM_WORK=$DEV/work/Textmate
-export TM_CLASSES_DIR=$TM_WORK/classes
-export TM_GROOVY=${GROOVY_HOME}/bin
-
-export GROOVY_JARS=${GROOVY_HOME}/lib/*
-export SCALA_JARS=${SCALA_HOME}/lib/*
-export CLOJURE_JARS=${CLOJURE_HOME}/*
-export JRUBY_JARS=${JRUBY_HOME}/lib/*
-export JAVA_JARS=
-
-#export CLASSPATH=.:${JAVA_JARS}:${GROOVY_JARS}:${SCALA_JARS}:${CLOJURE_JARS}:${JRUBY_JARS}:$TM_CLASSES_DIR
-
-export XMLLINT_INDENT="    "
-
-export PATH=~/bin:/opt/local/bin:/opt/local/sbin:/usr/local/git/bin:/usr/local/mysql/bin:$ANT_HOME/bin:${GROOVY_HOME}/bin:${GRADLE_HOME}/bin:${SCALA_HOME}/bin:${HADOOP_PREFIX}/bin:/${ACCUMULO_HOME}/bin:${ZOOKEEPER_HOME}/bin:$M2_HOME/bin:${JRUBY_HOME}/bin:${ACTIVEMQ_HOME}/bin:.:$PATH
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/chrisdavidson/.sdkman"
+[[ -s "/Users/chrisdavidson/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/chrisdavidson/.sdkman/bin/sdkman-init.sh"
